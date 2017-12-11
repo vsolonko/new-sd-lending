@@ -4,8 +4,8 @@ p {margin: 0}
 h1{margin: 0;}
 .main {
 	position: relative;
-	/*background-image: url(/images/bg.jpg);*/
-	background-image: url(https://github.com/vsolonko/new-sd-lending/raw/master/images/bg.jpg);
+	background-image: url(/images/bg.jpg);
+	/*background-image: url(https://github.com/vsolonko/new-sd-lending/raw/master/images/bg.jpg);*/
     background-position: 400px 0;
     background-repeat: no-repeat;
 	background-size: cover;
