@@ -14,15 +14,58 @@
  <dd><em><?php print($_SERVER['REMOTE_ADDR']); ?></em></dd>
 
  <dt><strong>Твоя операционная система:</strong></dt>
-$opts = [
-  'http' => [
-    'method' => 'GET',
-    'header' => 'User-Agent: ' . $_SERVER['HTTP_USER_AGENT'] . "\r\n"
-  ]
-];
 
-$context = stream_context_create($opts);
-print file_get_contents('http://ip_server/form.php', false, $context);
+  
+  
+  <?php
+/*
+Author: Daniel Kassner
+Website: http://www.danielkassner.com
+*/
+function getOS($userAgent) {
+  // Создадим список операционных систем в виде элементов массива
+    $oses = array (
+        'iPhone' => '(iPhone)',
+        'Windows 3.11' => 'Win16',
+        'Windows 95' => '(Windows 95)|(Win95)|(Windows_95)', // Используем регулярное выражение
+        'Windows 98' => '(Windows 98)|(Win98)',
+        'Windows 2000' => '(Windows NT 5.0)|(Windows 2000)',
+        'Windows XP' => '(Windows NT 5.1)|(Windows XP)',
+        'Windows 2003' => '(Windows NT 5.2)',
+        'Windows Vista' => '(Windows NT 6.0)|(Windows Vista)',
+        'Windows 7' => '(Windows NT 6.1)|(Windows 7)',
+        'Windows NT 4.0' => '(Windows NT 4.0)|(WinNT4.0)|(WinNT)|(Windows NT)',
+        'Windows ME' => 'Windows ME',
+        'Open BSD'=>'OpenBSD',
+        'Sun OS'=>'SunOS',
+        'Linux'=>'(Linux)|(X11)',
+        'Safari' => '(Safari)',
+        'Macintosh'=>'(Mac_PowerPC)|(Macintosh)',
+        'QNX'=>'QNX',
+        'BeOS'=>'BeOS',
+        'OS/2'=>'OS/2',
+        'Search Bot'=>'(nuhk)|(Googlebot)|(Yammybot)|(Openbot)|(Slurp/cat)|(msnbot)|(ia_archiver)'
+    );
+    foreach($oses as $os=>$pattern){
+        if(eregi($pattern, $userAgent)) { // Пройдемся по массиву $oses для поиска соответствующей операционной системы.
+            return $os;
+        }
+    }
+    return 'Unknown'; // Хрен его знает, чего у него на десктопе стоит.
+}
+echo getOS($_SERVER['HTTP_USER_AGENT']);
+?>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
  <dd><em><?php print(get_browser()->platform); ?></em></dd>
 
