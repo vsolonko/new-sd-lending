@@ -14,6 +14,14 @@
  <dd><em><?php print($_SERVER['REMOTE_ADDR']); ?></em></dd>
 
  <dt><strong>Твоя операционная система:</strong></dt>
+  function is_windows() {
+    $result = false;
+    if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+        $result = true;
+    }
+      
+    return $result;
+}
  <dd><em><?php print(get_browser()->platform); ?></em></dd>
 
  <dt><strong>Твой браузер:</strong></dt>
